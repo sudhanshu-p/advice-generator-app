@@ -1,13 +1,13 @@
-let advice, data;
-
-const adviceCount = document.querySelector('.advice-count');
+const adviceCount = document.querySelector('.counter');
 const adviceContent = document.querySelector('.advice-content');
+const dice = document.querySelector('.dice');
 
 async function getAdvice () {
-    advice = await fetch ("https://api.adviceslip.com/advice");
-    data = await (advice.json());
+    let num = Math.round(Math.random() * 224);
+    let advice = await fetch ("https://api.adviceslip.com/advice/" + num);
+    let data = await (advice.json());
     console.log(data);
-    adviceCount.innerHTML += data.slip.id;
+    adviceCount.innerHTML = data.slip.id;
     adviceContent.innerHTML = '"' + data.slip.advice + '"';
 }
 
